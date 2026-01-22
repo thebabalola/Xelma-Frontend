@@ -23,7 +23,11 @@ const Header = () => {
   return (
     <header className="w-full bg-white fixed top-0 left-0 z-20 border-b border-gray-100">
       <nav className="w-full h-20 lg:h-28 flex items-center justify-between px-4 lg:px-14">
-        <img src={Logo} alt="logo" className="h-8 lg:h-10" />
+
+        <div className="flex items-center justify-start gap-5 md:gap-2 lg:gap-4" >
+          <img src={Logo} alt="logo" className="h-8 lg:h-10" />
+          <p className="text-2xl text-[#292D32] font-bold md:text-lg lg:text-2xl" >Xelma</p>
+        </div>
 
         <ul className="hidden md:flex items-center justify-center gap-6 lg:gap-10">
           {routes.map(({ name, route }) => (
@@ -32,10 +36,9 @@ const Header = () => {
               to={route}
               end
               className={({ isActive }) =>
-                `font-medium lg:text-xl rounded-lg py-1 px-3 transition-colors ${
-                  isActive
-                    ? "bg-[#2C4BFD] text-white"
-                    : "text-[#9B9B9B] hover:bg-[#2C4BFD] hover:text-white"
+                `font-medium lg:text-xl rounded-lg py-1 px-3 transition-colors ${isActive
+                  ? "bg-[#2C4BFD] text-white"
+                  : "text-[#9B9B9B] hover:bg-[#2C4BFD] hover:text-white"
                 }`
               }
             >
@@ -61,19 +64,16 @@ const Header = () => {
           className="md:hidden relative w-8 h-8 flex items-center justify-center"
         >
           <span
-            className={`absolute h-0.5 w-6 bg-gray-800 transition-transform duration-300 ${
-              open ? "rotate-45" : "-translate-y-2"
-            }`}
+            className={`absolute h-0.5 w-6 bg-gray-800 transition-transform duration-300 ${open ? "rotate-45" : "-translate-y-2"
+              }`}
           />
           <span
-            className={`absolute h-0.5 w-6 bg-gray-800 transition-opacity duration-300 ${
-              open ? "opacity-0" : "opacity-100"
-            }`}
+            className={`absolute h-0.5 w-6 bg-gray-800 transition-opacity duration-300 ${open ? "opacity-0" : "opacity-100"
+              }`}
           />
           <span
-            className={`absolute h-0.5 w-6 bg-gray-800 transition-transform duration-300 ${
-              open ? "-rotate-45" : "translate-y-2"
-            }`}
+            className={`absolute h-0.5 w-6 bg-gray-800 transition-transform duration-300 ${open ? "-rotate-45" : "translate-y-2"
+              }`}
           />
         </div>
       </nav>
@@ -88,10 +88,9 @@ const Header = () => {
                 end
                 onClick={() => setOpen(false)}
                 className={({ isActive }) =>
-                  `text-lg font-medium py-2 px-3 rounded-lg transition-colors ${
-                    isActive
-                      ? "bg-[#2C4BFD] text-white"
-                      : "text-[#4D4D4D] hover:bg-[#2C4BFD] hover:text-white"
+                  `text-lg font-medium py-2 px-3 rounded-lg transition-colors ${isActive
+                    ? "bg-[#2C4BFD] text-white"
+                    : "text-[#4D4D4D] hover:bg-[#2C4BFD] hover:text-white"
                   }`
                 }
               >
