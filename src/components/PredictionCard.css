@@ -34,6 +34,19 @@
   color: #f3f4f6;
 }
 
+/* Connecting / loading state */
+.prediction-card__connecting {
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  color: #6b7280;
+  margin: -16px 0 20px;
+  text-align: center;
+}
+
+.dark .prediction-card__connecting {
+  color: #9ca3af;
+}
+
 /* Buttons Section */
 .prediction-card__buttons {
   display: grid;
@@ -76,30 +89,48 @@
   border-color: #2c4bfd;
 }
 
+/* UP button: blue */
 .prediction-card__button--up {
-  border-color: #10b981;
+  border-color: #2c4bfd;
+  background: #eef2ff;
+  color: #1e40af;
 }
 
 .prediction-card__button--up:hover:not(:disabled) {
-  background: #ecfdf5;
-  border-color: #059669;
+  background: #e0e7ff;
+  border-color: #2563eb;
+}
+
+.dark .prediction-card__button--up {
+  background: #1e3a8a;
+  color: #93c5fd;
 }
 
 .dark .prediction-card__button--up:hover:not(:disabled) {
-  background: #064e3b;
+  background: #1e40af;
+  border-color: #3b82f6;
 }
 
+/* DOWN button: gray */
 .prediction-card__button--down {
-  border-color: #ef4444;
+  border-color: #9ca3af;
+  background: #f3f4f6;
+  color: #4b5563;
 }
 
 .prediction-card__button--down:hover:not(:disabled) {
-  background: #fef2f2;
-  border-color: #dc2626;
+  background: #e5e7eb;
+  border-color: #6b7280;
+}
+
+.dark .prediction-card__button--down {
+  background: #374151;
+  color: #d1d5db;
 }
 
 .dark .prediction-card__button--down:hover:not(:disabled) {
-  background: #7f1d1d;
+  background: #4b5563;
+  border-color: #9ca3af;
 }
 
 .prediction-card__button--active {
@@ -109,25 +140,25 @@
 }
 
 .prediction-card__button--up.prediction-card__button--active {
-  background: #d1fae5;
-  border-color: #10b981;
-  color: #047857;
+  background: #c7d2fe;
+  border-color: #2c4bfd;
+  color: #1e40af;
 }
 
 .dark .prediction-card__button--up.prediction-card__button--active {
-  background: #064e3b;
-  color: #6ee7b7;
+  background: #1e3a8a;
+  color: #93c5fd;
 }
 
 .prediction-card__button--down.prediction-card__button--active {
-  background: #fee2e2;
-  border-color: #ef4444;
-  color: #991b1b;
+  background: #e5e7eb;
+  border-color: #6b7280;
+  color: #374151;
 }
 
 .dark .prediction-card__button--down.prediction-card__button--active {
-  background: #7f1d1d;
-  color: #fca5a5;
+  background: #4b5563;
+  color: #e5e7eb;
 }
 
 .prediction-card__button:disabled {
@@ -204,6 +235,32 @@
 .dark .prediction-card__input:disabled {
   background: #1f2937;
   color: #6b7280;
+}
+
+.prediction-card__input--error {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.15);
+}
+
+.prediction-card__input--error:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
+}
+
+.dark .prediction-card__input--error {
+  border-color: #ef4444;
+}
+
+.prediction-card__exact-price-error {
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  color: #dc2626;
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+.dark .prediction-card__exact-price-error {
+  color: #fca5a5;
 }
 
 .prediction-card__fill-button {
