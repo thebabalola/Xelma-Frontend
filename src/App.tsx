@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Leaderboard from "./components/Leaderboard";
 import RouteProgressBar from "./components/RouteProgressBar";
 import PredictionCard from "./components/PredictionCard";
+import { Toaster } from "sonner";
 
 function App() {
   const handlePrediction = (data: any) => {
@@ -48,6 +49,7 @@ function App() {
           />
         </Routes>
       </main>
+      <Toaster richColors position="top-center" />
     </ThemeProvider>
   );
 }
