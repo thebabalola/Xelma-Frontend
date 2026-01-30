@@ -1,19 +1,34 @@
-import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeProvider";
 import "./App.css";
 import Header from "./components/Header";
+import NewsRibbon from "./components/NewsRibbon";
 import Leaderboard from "./components/Leaderboard";
 import RouteProgressBar from "./components/RouteProgressBar";
-import PredictionCard from "./components/PredictionCard";
 import { Toaster } from "sonner";
 import Dashboard from "./pages/Dashboard";
 
 function App() {
+  const [showNewsRibbon, setShowNewsRibbon] = useState(true);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+
   return (
     <ThemeProvider>
       <RouteProgressBar />
       <Header />
-      <main className="pt-24 lg:pt-32 px-4 lg:px-14 min-h-screen bg-[#FAFAFA] dark:bg-gray-900">
+      {showNewsRibbon && (
+        <NewsRibbon
+          onClose={() => setShowNewsRibbon(false)}
+          hasSidebar={isHomePage}
+        />
+      )}
+      <main
+        className={`px-4 lg:px-14 min-h-screen bg-[#FAFAFA] dark:bg-gray-900 transition-[padding] ${
+          showNewsRibbon ? "pt-32 lg:pt-44" : "pt-24 lg:pt-32"
+        }`}
+      >
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
