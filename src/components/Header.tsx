@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { useTheme } from 'next-themes';
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
+import { useTheme } from "next-themes";
+import WalletConnect from "./WalletConnect";
 import Logo from '../assets/logo.svg';
 import DiscordLogo from '../assets/discord-icon.svg';
 import XLMLogo from '../assets/xlm-icon.svg';
@@ -47,10 +48,9 @@ const Header = () => {
               to={route}
               end
               className={({ isActive }) =>
-                `font-medium lg:text-xl rounded-lg py-1 px-3 transition-colors ${
-                  isActive
-                    ? "bg-[#2C4BFD] text-white"
-                    : "text-[#9B9B9B] dark:text-gray-400 hover:bg-[#2C4BFD] hover:text-white"
+                `font-medium lg:text-xl rounded-lg py-1 px-3 transition-colors ${isActive
+                  ? "bg-[#2C4BFD] text-white"
+                  : "text-[#9B9B9B] dark:text-gray-400 hover:bg-[#2C4BFD] hover:text-white"
                 }`
               }
             >
@@ -95,20 +95,7 @@ const Header = () => {
               </svg>
             )}
           </button>
-          <div className="min-w-36 rounded-lg py-1 px-2.5 border border-[#BEC7FE] dark:border-gray-700 flex items-center gap-3 bg-white dark:bg-gray-800 transition-colors">
-            <img src={DiscordLogo} alt="discord" />
-            <img src={XLMLogo} alt="xlm" />
-            <p className="font-semibold text-lg text-[#4D4D4D] dark:text-gray-300 transition-colors">
-              2.56
-            </p>
-          </div>
-          <div className="w-10 h-10 rounded-full overflow-hidden bg-[#CCCCCC] dark:bg-gray-700 transition-colors">
-            <img
-              src={Avatar}
-              alt="avatar"
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <WalletConnect />
         </div>
 
         <div className='md:hidden flex items-center gap-2'>
@@ -153,19 +140,16 @@ const Header = () => {
             className='relative w-8 h-8 flex items-center justify-center'
           >
             <span
-              className={`absolute h-0.5 w-6 bg-gray-800 dark:bg-gray-200 transition-transform duration-300 ${
-                open ? "rotate-45" : "-translate-y-2"
-              }`}
+              className={`absolute h-0.5 w-6 bg-gray-800 dark:bg-gray-200 transition-transform duration-300 ${open ? "rotate-45" : "-translate-y-2"
+                }`}
             />
             <span
-              className={`absolute h-0.5 w-6 bg-gray-800 dark:bg-gray-200 transition-opacity duration-300 ${
-                open ? "opacity-0" : "opacity-100"
-              }`}
+              className={`absolute h-0.5 w-6 bg-gray-800 dark:bg-gray-200 transition-opacity duration-300 ${open ? "opacity-0" : "opacity-100"
+                }`}
             />
             <span
-              className={`absolute h-0.5 w-6 bg-gray-800 dark:bg-gray-200 transition-transform duration-300 ${
-                open ? "-rotate-45" : "translate-y-2"
-              }`}
+              className={`absolute h-0.5 w-6 bg-gray-800 dark:bg-gray-200 transition-transform duration-300 ${open ? "-rotate-45" : "translate-y-2"
+                }`}
             />
           </div>
         </div>
@@ -181,10 +165,9 @@ const Header = () => {
                 end
                 onClick={() => setOpen(false)}
                 className={({ isActive }) =>
-                  `text-lg font-medium py-2 px-3 rounded-lg transition-colors ${
-                    isActive
-                      ? "bg-[#2C4BFD] text-white"
-                      : "text-[#4D4D4D] dark:text-gray-300 hover:bg-[#2C4BFD] hover:text-white"
+                  `text-lg font-medium py-2 px-3 rounded-lg transition-colors ${isActive
+                    ? "bg-[#2C4BFD] text-white"
+                    : "text-[#4D4D4D] dark:text-gray-300 hover:bg-[#2C4BFD] hover:text-white"
                   }`
                 }
               >
@@ -193,21 +176,8 @@ const Header = () => {
             ))}
           </ul>
 
-          <div className="mt-4 flex items-center justify-between">
-            <div className="rounded-lg py-2 px-3 border border-[#BEC7FE] dark:border-gray-700 flex items-center gap-3 bg-white dark:bg-gray-800 transition-colors">
-              <img src={DiscordLogo} alt="discord" />
-              <img src={XLMLogo} alt="xlm" />
-              <p className="font-semibold text-base text-[#4D4D4D] dark:text-gray-300 transition-colors">
-                2.56
-              </p>
-            </div>
-            <div className="w-10 h-10 rounded-full overflow-hidden bg-[#CCCCCC] dark:bg-gray-700 transition-colors">
-              <img
-                src={Avatar}
-                alt="avatar"
-                className="w-full h-full object-cover"
-              />
-            </div>
+          <div className="mt-4 flex items-center justify-end">
+            <WalletConnect />
           </div>
         </div>
       )}

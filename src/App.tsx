@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeProvider";
+import { Toaster } from "react-hot-toast";
 import "./App.css";
 import Header from "./components/Header";
 import NewsRibbon from "./components/NewsRibbon";
@@ -16,6 +17,7 @@ function App() {
 
   return (
     <ThemeProvider>
+      <Toaster position="bottom-right" />
       <RouteProgressBar />
       <Header />
       {showNewsRibbon && (
