@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeProvider";
+import { Toaster } from "react-hot-toast";
 import "./App.css";
 import Header from "./components/Header";
 import Leaderboard from "./components/Leaderboard";
@@ -9,6 +10,7 @@ import Dashboard from "./pages/Dashboard";
 function App() {
   return (
     <ThemeProvider>
+      <Toaster position="bottom-right" />
       <RouteProgressBar />
       <Header />
       <main className="pt-24 lg:pt-32 px-4 lg:px-14 min-h-screen bg-[#FAFAFA] dark:bg-gray-900">
