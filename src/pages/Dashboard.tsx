@@ -3,14 +3,18 @@ import PriceChart from "../components/PriceChart";
 import PredictionCard from "../components/PredictionCard";
 import type { PredictionData } from "../components/PredictionControls";
 
-const Dashboard = () => {
+interface DashboardProps {
+  showNewsRibbon?: boolean;
+}
+
+const Dashboard = ({ showNewsRibbon = true }: DashboardProps) => {
   const handlePrediction = (data: PredictionData) => {
     console.log("Prediction made:", data);
   };
 
   return (
     <div className="dashboard flex min-h-full">
-      <ChatSidebar />
+      <ChatSidebar showNewsRibbon={showNewsRibbon} />
 
       <div className="flex-1 ml-0 md:ml-80 transition-[margin] duration-300 ease-in-out p-4 lg:p-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

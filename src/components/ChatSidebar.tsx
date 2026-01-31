@@ -116,7 +116,12 @@ function SendIcon() {
   );
 }
 
-export function ChatSidebar() {
+interface ChatSidebarProps {
+  /** When true, sidebar starts below news ribbon; when false, below header only */
+  showNewsRibbon?: boolean;
+}
+
+export function ChatSidebar({ showNewsRibbon = true }: ChatSidebarProps) {
   const [messages, setMessages] = useState<Message[]>(mockMessages);
   const [inputValue, setInputValue] = useState("");
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -200,8 +205,9 @@ export function ChatSidebar() {
 
       {/* Sidebar */}
       <aside
-        className={`chat-sidebar fixed left-0 top-[80px] lg:top-[112px] w-80 h-[calc(100vh-80px)] lg:h-[calc(100vh-112px)] flex flex-col z-40 transition-transform duration-300 ease-in-out border-r
+        className={`chat-sidebar fixed left-0 w-80 flex flex-col z-40 transition-all duration-300 ease-in-out border-r
         bg-white dark:bg-[#1f2937] border-gray-100 dark:border-gray-800
+        ${showNewsRibbon ? "top-[128px] lg:top-[176px] h-[calc(100vh-128px)] lg:h-[calc(100vh-176px)]" : "top-[80px] lg:top-[112px] h-[calc(100vh-80px)] lg:h-[calc(100vh-112px)]"}
         md:translate-x-0 ${isMobileOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
         {/* Header */}
