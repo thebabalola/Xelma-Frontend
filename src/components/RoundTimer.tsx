@@ -39,10 +39,15 @@ const RoundTimer = ({ initialSeconds = 60, playingNow = 142 }: RoundTimerProps) 
   const offset = circumference - (progress / 100) * circumference;
 
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 shadow-sm rounded-xl border border-gray-100 dark:border-gray-700">
+    <div 
+      className="bg-white dark:bg-gray-800 p-6 shadow-sm rounded-xl border border-gray-100 dark:border-gray-700"
+      role="timer"
+      aria-live="polite"
+      aria-label="Round countdown timer"
+    >
       <div className="flex flex-col items-center justify-center">
         <div className="relative">
-          <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 100 100">
+          <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 100 100" aria-hidden="true">
             <circle
               cx="50"
               cy="50"
@@ -72,8 +77,8 @@ const RoundTimer = ({ initialSeconds = 60, playingNow = 142 }: RoundTimerProps) 
           </div>
         </div>
 
-        <div className="mt-6 flex items-center gap-2">
-          <span className="inline-block w-2 h-2 bg-green-500 rounded-full"></span>
+        <div className="mt-6 flex items-center gap-2" aria-label={`Current active players: ${playingNow}`}>
+          <span className="inline-block w-2 h-2 bg-green-500 rounded-full" aria-hidden="true"></span>
           <span className="text-lg font-semibold text-gray-600 dark:text-gray-300">
             Playing now: {playingNow}
           </span>
