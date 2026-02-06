@@ -8,26 +8,22 @@ interface RoundTimerProps {
 const RoundTimer = ({ initialSeconds = 60, playingNow = 142 }: RoundTimerProps) => {
   const [seconds, setSeconds] = useState(initialSeconds);
 
-  // Sync state with prop changes
+  // Sync state with prop changes and handle countdown logic
   useEffect(() => {
     setSeconds(initialSeconds);
+
+    const interval = window.setInterval(() => {
+      setSeconds((prev) => {
+        if (prev > 0) {
+          return prev - 1;
+        }
+        // Loop back to start for continuous rounds
+        return initialSeconds;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
   }, [initialSeconds]);
-
-  useEffect(() => {
-    let interval: number | undefined;
-
-    if (seconds > 0) {
-      interval = window.setInterval(() => {
-        setSeconds((prev) => prev - 1);
-      }, 1000);
-    }
-
-    return () => {
-      if (interval !== undefined) {
-        clearInterval(interval);
-      }
-    };
-  }, [seconds]);
 
   const formatTime = (totalSeconds: number): string => {
     const safeSeconds = Math.max(0, totalSeconds);
