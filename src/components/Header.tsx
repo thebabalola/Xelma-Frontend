@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useTheme } from "next-themes";
-import Logo from "../assets/logo.svg";
-import DiscordLogo from "../assets/discord-icon.svg";
-import XLMLogo from "../assets/xlm-icon.svg";
-import Avatar from "../assets/avatar.svg";
+import WalletConnect from "./WalletConnect";
+import Logo from '../assets/logo.svg';
+import DiscordLogo from '../assets/discord-icon.svg';
+import XLMLogo from '../assets/xlm-icon.svg';
+import Avatar from '../assets/avatar.svg';
+import ProfileSettingsModal from './ProfileSettingsModal';
 
 interface Routes {
   name: string;
@@ -14,6 +16,7 @@ interface Routes {
 const Header = () => {
   const [open, setOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const [profileOpen, setProfileOpen] = useState(false);
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -22,10 +25,10 @@ const Header = () => {
   const isDark = theme === "dark";
 
   const routes: Routes[] = [
-    { name: "Home", route: "/" },
-    { name: "Leaderboard", route: "/leaderboard" },
-    { name: "Learn", route: "/learn" },
-    { name: "Pools", route: "/pools" },
+    { name: 'Home', route: '/' },
+    { name: 'Leaderboard', route: '/leaderboard' },
+    { name: 'Learn', route: '/learn' },
+    { name: 'Pools', route: '/pools' },
   ];
 
   return (
@@ -38,17 +41,16 @@ const Header = () => {
           </p>
         </div>
 
-        <ul className="hidden md:flex items-center justify-center gap-6 lg:gap-10">
+        <ul className='hidden md:flex items-center justify-center gap-6 lg:gap-10'>
           {routes.map(({ name, route }) => (
             <NavLink
               key={name}
               to={route}
               end
               className={({ isActive }) =>
-                `font-medium lg:text-xl rounded-lg py-1 px-3 transition-colors ${
-                  isActive
-                    ? "bg-[#2C4BFD] text-white"
-                    : "text-[#9B9B9B] dark:text-gray-400 hover:bg-[#2C4BFD] hover:text-white"
+                `font-medium lg:text-xl rounded-lg py-1 px-3 transition-colors ${isActive
+                  ? "bg-[#2C4BFD] text-white"
+                  : "text-[#9B9B9B] dark:text-gray-400 hover:bg-[#2C4BFD] hover:text-white"
                 }`
               }
             >
@@ -57,11 +59,11 @@ const Header = () => {
           ))}
         </ul>
 
-        <div className="hidden md:flex items-center gap-3.5">
+        <div className='hidden md:flex items-center gap-3.5'>
           <button
             onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            aria-label='Toggle theme'
+            className='p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors'
           >
             {isDark ? (
               <svg
@@ -93,27 +95,14 @@ const Header = () => {
               </svg>
             )}
           </button>
-          <div className="min-w-36 rounded-lg py-1 px-2.5 border border-[#BEC7FE] dark:border-gray-700 flex items-center gap-3 bg-white dark:bg-gray-800 transition-colors">
-            <img src={DiscordLogo} alt="discord" />
-            <img src={XLMLogo} alt="xlm" />
-            <p className="font-semibold text-lg text-[#4D4D4D] dark:text-gray-300 transition-colors">
-              2.56
-            </p>
-          </div>
-          <div className="w-10 h-10 rounded-full overflow-hidden bg-[#CCCCCC] dark:bg-gray-700 transition-colors">
-            <img
-              src={Avatar}
-              alt="avatar"
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <WalletConnect />
         </div>
 
-        <div className="md:hidden flex items-center gap-2">
+        <div className='md:hidden flex items-center gap-2'>
           <button
             onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            aria-label='Toggle theme'
+            className='p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors'
           >
             {isDark ? (
               <svg
@@ -147,31 +136,28 @@ const Header = () => {
           </button>
           <div
             onClick={() => setOpen(!open)}
-            aria-label="Toggle menu"
-            className="relative w-8 h-8 flex items-center justify-center"
+            aria-label='Toggle menu'
+            className='relative w-8 h-8 flex items-center justify-center'
           >
             <span
-              className={`absolute h-0.5 w-6 bg-gray-800 dark:bg-gray-200 transition-transform duration-300 ${
-                open ? "rotate-45" : "-translate-y-2"
-              }`}
+              className={`absolute h-0.5 w-6 bg-gray-800 dark:bg-gray-200 transition-transform duration-300 ${open ? "rotate-45" : "-translate-y-2"
+                }`}
             />
             <span
-              className={`absolute h-0.5 w-6 bg-gray-800 dark:bg-gray-200 transition-opacity duration-300 ${
-                open ? "opacity-0" : "opacity-100"
-              }`}
+              className={`absolute h-0.5 w-6 bg-gray-800 dark:bg-gray-200 transition-opacity duration-300 ${open ? "opacity-0" : "opacity-100"
+                }`}
             />
             <span
-              className={`absolute h-0.5 w-6 bg-gray-800 dark:bg-gray-200 transition-transform duration-300 ${
-                open ? "-rotate-45" : "translate-y-2"
-              }`}
+              className={`absolute h-0.5 w-6 bg-gray-800 dark:bg-gray-200 transition-transform duration-300 ${open ? "-rotate-45" : "translate-y-2"
+                }`}
             />
           </div>
         </div>
       </nav>
 
       {open && (
-        <div className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 px-4 pb-4 transition-colors">
-          <ul className="flex flex-col gap-2 pt-4">
+        <div className='md:hidden bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 px-4 pb-4 transition-colors'>
+          <ul className='flex flex-col gap-2 pt-4'>
             {routes.map(({ name, route }) => (
               <NavLink
                 key={name}
@@ -179,10 +165,9 @@ const Header = () => {
                 end
                 onClick={() => setOpen(false)}
                 className={({ isActive }) =>
-                  `text-lg font-medium py-2 px-3 rounded-lg transition-colors ${
-                    isActive
-                      ? "bg-[#2C4BFD] text-white"
-                      : "text-[#4D4D4D] dark:text-gray-300 hover:bg-[#2C4BFD] hover:text-white"
+                  `text-lg font-medium py-2 px-3 rounded-lg transition-colors ${isActive
+                    ? "bg-[#2C4BFD] text-white"
+                    : "text-[#4D4D4D] dark:text-gray-300 hover:bg-[#2C4BFD] hover:text-white"
                   }`
                 }
               >
@@ -191,23 +176,34 @@ const Header = () => {
             ))}
           </ul>
 
-          <div className="mt-4 flex items-center justify-between">
-            <div className="rounded-lg py-2 px-3 border border-[#BEC7FE] dark:border-gray-700 flex items-center gap-3 bg-white dark:bg-gray-800 transition-colors">
-              <img src={DiscordLogo} alt="discord" />
-              <img src={XLMLogo} alt="xlm" />
-              <p className="font-semibold text-base text-[#4D4D4D] dark:text-gray-300 transition-colors">
-                2.56
-              </p>
-            </div>
-            <div className="w-10 h-10 rounded-full overflow-hidden bg-[#CCCCCC] dark:bg-gray-700 transition-colors">
-              <img
-                src={Avatar}
-                alt="avatar"
-                className="w-full h-full object-cover"
-              />
-            </div>
+          <div className="mt-4 flex items-center justify-end">
+            <WalletConnect />
           </div>
         </div>
+      )}
+      {/* <ProfileSettingsModal
+        open={profileOpen}
+        onClose={() => setProfileOpen(false)}
+        initialValues={{
+          name: 'Oxn3n 👽',
+          bio: '',
+          twitterLink: '',
+          streamerMode: false,
+          avatarUrl: null,
+        }}
+      /> */}
+      {profileOpen && (
+        <ProfileSettingsModal
+          key='profile-settings-modal'
+          onClose={() => setProfileOpen(false)}
+          initialValues={{
+            name: 'currentUsername',
+            bio: '',
+            twitterLink: '',
+            streamerMode: false,
+            avatarUrl: null,
+          }}
+        />
       )}
     </header>
   );
