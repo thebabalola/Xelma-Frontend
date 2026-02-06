@@ -8,6 +8,11 @@ interface RoundTimerProps {
 const RoundTimer = ({ initialSeconds = 60, playingNow = 142 }: RoundTimerProps) => {
   const [seconds, setSeconds] = useState(initialSeconds);
 
+  // Sync state with prop changes
+  useEffect(() => {
+    setSeconds(initialSeconds);
+  }, [initialSeconds]);
+
   useEffect(() => {
     let interval: number | undefined;
 
@@ -25,12 +30,15 @@ const RoundTimer = ({ initialSeconds = 60, playingNow = 142 }: RoundTimerProps) 
   }, [seconds]);
 
   const formatTime = (totalSeconds: number): string => {
-    const minutes = Math.floor(totalSeconds / 60);
-    const secs = totalSeconds % 60;
+    const safeSeconds = Math.max(0, totalSeconds);
+    const minutes = Math.floor(safeSeconds / 60);
+    const secs = safeSeconds % 60;
     return `${minutes}:${secs.toString().padStart(2, "0")}`;
   };
 
-  const progress = (seconds / initialSeconds) * 100;
+  const clampedSeconds = Math.max(seconds, 0);
+  const progress = initialSeconds > 0 ? (clampedSeconds / initialSeconds) * 100 : 0;
+  
   const circumference = 2 * Math.PI * 45;
   const offset = circumference - (progress / 100) * circumference;
 
